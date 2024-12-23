@@ -1,5 +1,5 @@
 
-@layer base, artbook, utilities;
+@layer base, pix, utilities;
 
 @media not screen {
 
@@ -16,7 +16,7 @@
 
 @media screen {
 
-    @layer artbook {
+    @layer pix {
 
         body {
 
@@ -534,3 +534,16 @@
         padding:        0;
     }
 }
+
+
+
+
+:is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-light); transition: filter 1s ease-in-out; } 
+
+    @media (prefers-color-scheme: dark) {
+
+        :is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-dark);  transition: filter 1s ease-in-out; } 
+    }
+
+    
+    [data-theme="light"] :is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-light); transition: filter 1s ease-in-out; }            [data-theme="dark"]  :is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-dark);  transition: filter 1s ease-in-out; }
