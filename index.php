@@ -146,10 +146,7 @@ $url   = "https://villepreux.github.io/indie-pix/";
         <a href="https://github.com/villepreux"          target="_blank" hidden="hidden" rel="me">Github   </a>
 
     </body>
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@sterlingwes/microformats-parser@1.4.2/dist/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@sterlingwes/microformats-parser@1.4.2/+esm" type="module"></script>//-->
-    <script src="https://cdn.jsdelivr.net/npm/@struda/microformats@0.0.7/.dist/index.umd.min.js"></script>
+
     <script type="module">
     
         <?php foreach (@file("js/app.js") as $line) echo "        $line"; ?>
