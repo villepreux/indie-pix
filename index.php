@@ -115,31 +115,12 @@ $url   = "https://villepreux.github.io/indie-pix/";
         }
         </script>
 
-        <header>
-            <a href="#"><h1 id="artbook"><?= $title ?></h1></a>
-            <nav>
-                <!--<form>
-                    <label for="filter-a"><input type="checkbox" id="filter-a" name="filter" checked></input> A </label>
-                    <label for="filter-b"><input type="checkbox" id="filter-b" name="filter" checked></input> B </label>
-                    <label for="filter-c"><input type="checkbox" id="filter-c" name="filter" checked></input> C </label>
-                </form>//-->
-            </nav>            
-        </header>
-
         <main>
 
-            <section id="feed">
-
-                
-
+            <section id="feed" class="album">
             </section>
 
         </main>
-
-        <footer>
-            <p>© <a href="mailto:villepreux@gmail.com">Antoine Villepreux</a> 2024-<?= date("Y") ?></p>
-            <p>Work in progress</p>
-        </footer>
 
         <a href="https://pixelfed.social/villepreux/"    target="_blank" hidden="hidden" rel="me">Pixelfed </a>
         <a href="https://mastodon.social/@villapirorum/" target="_blank" hidden="hidden" rel="me">Mastodon </a>

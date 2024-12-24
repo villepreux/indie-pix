@@ -1,5 +1,9 @@
 {
-  "sources": [
+  "__sources": [
     { "url" : "https://villapirorum.netlify.app/indie-pix/" }
+  ],
+  
+  "sources": [
+    { "url" : "http://localhost/villepreux.net/photo/" }
   ]
 }

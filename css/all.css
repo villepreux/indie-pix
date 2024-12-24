@@ -90,8 +90,8 @@
                         &:has(img:nth-child(2)) {
 
                             > img {
-
-                                width: min(calc(calc(100vb - 1rem) * var(--width) / var(--height)), calc(50% - .5rem));
+                                
+                                width: min(calc(calc(100vb - 1rem) * var(--width, 16) / var(--height, 10)), calc(50% - .5rem));
                                 &:first-child { margin-inline-end: 1rem; }
                             }
                         }
@@ -212,7 +212,9 @@
         /* --unitless-viewport-width */
 
         @property --100vw { syntax: "<length>"; initial-value: 0px; inherits: false; } 
-        :root { --100vw: 100vw; --unitless-viewport-width: tan(atan2(var(--100vw), 1px));  }
+        @property --100vh { syntax: "<length>"; initial-value: 0px; inherits: false; } 
+        :root { --100vw: 100vw; --unitless-viewport-width:  tan(atan2(var(--100vw), 1px));  }
+        :root { --100vh: 100vh; --unitless-viewport-height: tan(atan2(var(--100vh), 1px));  }
 
         /* body */
 
@@ -535,15 +537,83 @@
     }
 }
 
+/* Photo album */
 
+@property --max-row-height-px { syntax: "<length>"; initial-value: 0px; inherits: false; } 
+:root { --max-row-height-px: calc(100vh - 32px); --max-row-height-unitless: tan(atan2(var(--max-row-height-px), 1px));  }
 
+.album {
 
-:is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-light); transition: filter 1s ease-in-out; } 
+    --gap: 16px;
 
-    @media (prefers-color-scheme: dark) {
+    &:not(.masonry) {
 
-        :is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-dark);  transition: filter 1s ease-in-out; } 
+        --row-height: min(var(--max-row-height-unitless), 320);
+
+        display:    flex;
+        flex-wrap:  wrap;
+        gap:        var(--gap);
+            
+        &::after {
+
+            content:    '';
+            flex-grow:  999999999;
+        }
+        
+        .photo {
+
+            display:        block;
+            cursor:         zoom-in;
+            scroll-margin:  var(--gap);
+            flex-grow:      calc(var(--row-height) * var(--width, 16) / var(--height, 10));
+            position:       relative;
+            width:          calc(var(--row-height) * 1px * var(--width, 16) / var(--height, 10));
+            height:         auto;        
+            margin-bottom:  var(--gap);
+            margin:         0;
+        
+            &:before {
+
+                content:        "";
+                display:        block;
+                padding-bottom: calc(100% * var(--height, 10) / var(--width, 16));
+                pointer-events: none;
+            }
+
+            img {
+                
+                position:       absolute;
+                top:            0;
+                width:          100%;
+                vertical-align: bottom;
+                max-width:      100%;
+                max-height:     100%;
+                pointer-events: none;
+            }
+
+            &:target {
+
+                flex-grow:      99999999999999;
+                width:          calc(100vw - 2 * var(--gap));
+                height:         calc(100vh - 2 * var(--gap));
+                margin-bottom:  calc(var(--gap) + 1px);
+                outline:        none;
+                cursor:         initial;
+                max-width:      calc(100vw - 2 * var(--gap));
+                max-height:     calc(100vh - 2 * var(--gap));
+
+                img {
+
+                    object-fit: contain;
+                }
+            }
+        }
     }
 
-    
-    [data-theme="light"] :is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-light); transition: filter 1s ease-in-out; }            [data-theme="dark"]  :is(img, video):not(.album :is(img, video)) { filter: url(#img-filter-dark);  transition: filter 1s ease-in-out; }
+    &.masonry {
+
+        display:                grid;
+        grid-gap:               var(--gap);
+        grid-template-columns:  repeat(auto-fit, minmax(min(100%, 512px), 1fr));
+    }
+}
