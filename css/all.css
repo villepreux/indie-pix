@@ -18,6 +18,11 @@
 
     @layer pix {
 
+        :root {
+
+            --gap: max(1vw, 1vh);
+        }
+
         body {
 
             > header {
@@ -42,26 +47,26 @@
 
             > main {
 
-                padding-block:  1rem;
-                padding-inline: 1rem;
+                padding-block:  var(--gap);
+                padding-inline: var(--gap);
 
                 #gallery {
 
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                    gap: 1rem;
+                    gap: var(--gap);
                     align-items: stretch;
 
                     a { 
 
                         color: inherit;
 
-                        scroll-margin-top: .5em;
+                        scroll-margin-top: var(--gap);
 
                         display:            flex;
                         justify-content:    center;
-                        max-height:         calc(100vb - 1rem);
-                        max-width:          calc(100vi - 1rem);
+                        max-height:         calc(100vb - var(--gap));
+                        max-width:          calc(100vi - var(--gap));
                         text-align:         center;
 
                         img {
@@ -91,8 +96,8 @@
 
                             > img {
                                 
-                                width: min(calc(calc(100vb - 1rem) * var(--width, 16) / var(--height, 10)), calc(50% - .5rem));
-                                &:first-child { margin-inline-end: 1rem; }
+                                width: min(calc(calc(100vb - var(--gap)) * var(--width, 16) / var(--height, 10)), calc(50% - .5 * var(--gap)));
+                                &:first-child { margin-inline-end: var(--gap); }
                             }
                         }
                     }
