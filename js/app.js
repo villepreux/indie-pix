@@ -191,6 +191,7 @@ async function fetch_sources() {
                                     a.id = "photo-"+i;
                                     a.href = "#"+a.id;
                                     a.classList.add("photo");
+                                    a.classList.add("h-entry");
         
                                     if (!!img.width) {
         

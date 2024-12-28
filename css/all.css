@@ -49,7 +49,7 @@
 
                 padding-block:  var(--gap);
                 padding-inline: var(--gap);
-
+                /*
                 #gallery {
 
                     display: grid;
@@ -101,7 +101,7 @@
                             }
                         }
                     }
-                }
+                }*/
             }
             
             > footer {
@@ -544,89 +544,82 @@
 
 /* Photo album */
 
-@property --max-row-height-px { syntax: "<length>"; initial-value: 0px; inherits: false; } 
-:root { --max-row-height-px: calc(100vh - 32px); --max-row-height-unitless: tan(atan2(var(--max-row-height-px), 1px));  }
+@property --album-max-row-height-px { syntax: "<length>"; initial-value: 0px; inherits: false; }
 
 .album {
 
-    --gap: 16px;
+    --album-max-row-height-px:       calc(100vh - 32px);
+    --album-max-row-height-unitless: tan(atan2(var(--album-max-row-height-px), 1px));
 
-    &:not(.masonry) {
+    --gap:          max(1vw, 1vh);
+    --row-height:   min(var(--album-max-row-height-unitless), 240);
 
-        --row-height: min(var(--max-row-height-unitless), 320);
+    display:        flex;
+    flex-wrap:      wrap;
+    gap:            var(--gap);
+    padding:        var(--gap);
+  
+    cursor:         zoom-out;
 
-        display:    flex;
-        flex-wrap:  wrap;
-        gap:        var(--gap);
-            
-        &::after {
+    &::after {
 
-            content:    '';
-            flex-grow:  999999999;
-        }
-        
-        .photo {
-
-            display:        block;
-            cursor:         zoom-in;
-            scroll-margin:  var(--gap);
-            flex-grow:      calc(var(--row-height) * var(--width, 16) / var(--height, 10));
-            position:       relative;
-            width:          calc(var(--row-height) * 1px * var(--width, 16) / var(--height, 10));
-            height:         auto;        
-            margin-bottom:  var(--gap);
-            margin:         0;
-            
-            &:before {
-
-                content:        "";
-                display:        block;
-                padding-bottom: calc(100% * var(--height, 10) / var(--width, 16));
-                pointer-events: none;
-            }
-
-            img {
-                
-                position:           absolute;
-                top:                0;
-                width:              100%;
-                vertical-align:     bottom;
-                max-width:          100%;
-                max-height:         100%;
-                pointer-events:     none;
-
-                border:             1px solid var(--background-color-2);
-                color:              var(--text-color-1);
-                --fill:             var(--text-color-1);
-                background:         transparent no-repeat center url(../../loading.svg);
-            }
-
-            &:target {
-
-                flex-grow:      99999999999999;
-                width:          calc(100vw - 2 * var(--gap));
-                height:         calc(100vh - 2 * var(--gap));
-                margin-bottom:  var(--gap);
-                outline:        none;
-                cursor:         initial;
-                max-width:      calc(100vw - 2 * var(--gap));
-                max-height:     calc(100vh - 2 * var(--gap));
-
-                img {
-
-                    object-fit:         contain;
-                    object-position:    center;
-                    width:              100%;
-                    height:             100%;
-                }
-            }
-        }
+        content:    '';
+        flex-grow:  999999999;
     }
 
-    &.masonry {
+    a.photo {
+        
+        display:        block;
+        flex-grow:      calc(var(--row-height) * var(--width) / var(--height));
+        position:       relative;
+        width:          calc(var(--row-height) * 1px * var(--width) / var(--height));
+        height:         auto;        
+        margin-bottom:  var(--gap);
+        margin:         0;
+        cursor:         zoom-in;
+      
+        max-width: calc(100vw - 2 * var(--gap));
+      
+        scroll-margin-top: var(--gap);
+      
+        &:before {
 
-        display:                grid;
-        grid-gap:               var(--gap);
-        grid-template-columns:  repeat(auto-fit, minmax(min(100%, 512px), 1fr));
+            content:        "";
+            display:        block;
+            padding-bottom: calc(100% * var(--height) / var(--width));
+            pointer-events: none;
+        }
+
+        img {
+
+            position:       absolute;
+            top:            0;
+            width:          100%;
+            vertical-align: bottom;
+            max-width:      100%;
+            max-height:     100%;
+            pointer-events: none;
+            border:         1px solid var(--background-color-2);
+        }
+      
+        &:target:focus {
+
+            flex-grow:      99999999999999; 
+            margin-bottom:  calc(var(--gap) + 1px); 
+            width:          calc(100% - 2 * var(--gap));
+            height:         calc(100vh - 2 * var(--gap));
+          
+            outline:        none;
+            pointer-events: none;
+            user-select:    none;
+          
+            img {
+
+                object-fit:         contain;
+                object-position:    center;
+                width:              100%;
+                height:             100%;
+            }
+        }
     }
 }
