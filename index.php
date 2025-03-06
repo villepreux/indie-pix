@@ -123,7 +123,7 @@ $url   = "https://villepreux.github.io/indie-pix/";
         </main>
 
         <a href="https://pixelfed.social/villepreux/"    target="_blank" hidden="hidden" rel="me">Pixelfed </a>
-        <a href="https://mastodon.social/@villapirorum/" target="_blank" hidden="hidden" rel="me">Mastodon </a>
+        <a href="https://indieweb.social/@villapirorum/" target="_blank" hidden="hidden" rel="me">Mastodon </a>
         <a href="https://github.com/villepreux"          target="_blank" hidden="hidden" rel="me">Github   </a>
 
     </body>
