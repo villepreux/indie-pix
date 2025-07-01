@@ -58,14 +58,14 @@ $url   = "https://villepreux.github.io/indie-pix/";
 
         <meta property="og:title"           content="<?= $title ?>">
         <meta property="og:description"     content="<?= $desc ?>">
-        <meta property="og:site_name"       content="villapirorum.netlify.app">
+        <meta property="og:site_name"       content="villepreux.net">
         <meta property="og:image"           content="media/indie-pix.png">
         <meta property="og:url"             content="<?= $url ?>">
         <meta property="og:type"            content="website">
 
         <meta name="og:title"               content="<?= $title ?>">
         <meta name="og:description"         content="<?= $desc ?>">
-        <meta name="og:site_name"           content="villapirorum.netlify.app">
+        <meta name="og:site_name"           content="villepreux.net">
 
         <meta itemprop="name"               content="<?= $title ?>">
         <meta itemprop="description"        content="<?= $desc ?>">
