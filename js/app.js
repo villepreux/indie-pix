@@ -65,9 +65,14 @@ async function fetch_sources() {
         
                                     if (!!microformats.rels && !!microformats.rels.me)
                                     {
+                                        var me_url = trim_char(web_url, "/") + "/@";
+
+                                        console.log("Looking for", me_url);
+                                        console.log("Scanning", microformats.rels.me);
+
                                         for (const me of microformats.rels.me) {
         
-                                            if (0 == me.indexOf(trim_char(web_url, "/") + "/@")) {
+                                            if (0 == me.indexOf(me_url)) {
         
                                                 indie_pix.me = me;
                                                 break;
