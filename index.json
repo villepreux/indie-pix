@@ -1,6 +1,5 @@
 {
   "sources": [
-    { "url" : "http://localhost/villepreux.net/photo/" },
     { "url" : "https://villepreux.net/photo/" }
   ]
 }
